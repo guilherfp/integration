@@ -17,7 +17,7 @@
   </dependencyManagement>
   
   <modules>
-    <module>integration-core</module>
+  <module>integration-core</module>
   </modules>
 
   <build>
