@@ -32,6 +32,7 @@ public class Recall {
 
   public Recall(String id, long time, Map<String, Object> values) {
     this(id, time);
+    RecallValues.validate(values);
     this.values = values;
   }
 
@@ -68,7 +69,7 @@ public class Recall {
     if (isAction()) {
       return StringUtils.defaultString(action);
     } else {
-      return ProtocolParametersBuilder.build(values);
+      return RecallValues.build(values);
     }
   }
 

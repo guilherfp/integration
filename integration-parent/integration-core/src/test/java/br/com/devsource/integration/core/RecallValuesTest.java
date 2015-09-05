@@ -10,31 +10,31 @@ import org.junit.Test;
 /**
  * @author Guilherme Pacheco
  */
-public class ProtocolParametersBuilderTest {
+public class RecallValuesTest {
 
   @Test
   public void testBuild() throws Exception {
     Map<String, Object> map = new HashMap<>();
     map.put("id", 123);
     map.put("message", "TEST");
-    assertEquals("{\"id\":123,\"message\":\"TEST\"}", ProtocolParametersBuilder.build(map));
+    assertEquals("{\"id\":123,\"message\":\"TEST\"}", RecallValues.build(map));
   }
 
   @Test
   public void testBuild_OneParameter() throws Exception {
     Map<String, Object> map = new HashMap<>();
     map.put("id", 123);
-    assertEquals("{\"id\":123}", ProtocolParametersBuilder.build(map));
+    assertEquals("{\"id\":123}", RecallValues.build(map));
   }
 
   @Test(expected = NullPointerException.class)
   public void testBuild_NullParameters() throws Exception {
-    ProtocolParametersBuilder.build(null);
+    RecallValues.build(null);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testBuild_EmptyParameters() throws Exception {
-    ProtocolParametersBuilder.build(new HashMap<>());
+    RecallValues.build(new HashMap<>());
   }
 
 }
