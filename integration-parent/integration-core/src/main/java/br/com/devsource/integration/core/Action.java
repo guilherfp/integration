@@ -3,16 +3,16 @@ package br.com.devsource.integration.core;
 /**
  * @author Guilherme Pacheco
  */
-public enum Constants implements HasKey {
+public enum Action implements HasKey {
 
-  MESSAGE("Mensagem", "m"),
-  CLIENT("Código do cliente", "c"),
-  VERSAO_ERP("Versão do ERP", "v");
+  PING("Ping", "ping"),
+  PONG("Pong", "pong"),
+  RETRY("Retry", "r");
 
   private String descricao;
   private String key;
 
-  private Constants(String descricao, String key) {
+  private Action(String descricao, String key) {
     this.descricao = descricao;
     this.key = key;
   }
@@ -26,7 +26,7 @@ public enum Constants implements HasKey {
     return key;
   }
 
-  public static Constants valueOfKey(String key) {
+  public static Action valueOfKey(String key) {
     return HasKey.valueOfKey(key, values());
   }
 
@@ -34,5 +34,4 @@ public enum Constants implements HasKey {
   public String toString() {
     return String.format("(%s) %s", key, descricao);
   }
-
 }

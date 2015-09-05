@@ -1,7 +1,8 @@
 package br.com.devsource.integration.core;
 
+import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Map.Entry;
 import org.apache.commons.lang3.Validate;
 
 import com.google.gson.Gson;
@@ -17,12 +18,24 @@ public class RecallValues {
     super();
   }
 
-  public static String build(Map<String, Object> values) {
+  public static String toString(Map<Constants, Object> values) {
     validate(values);
-    return GSON.toJson(values);
+    Map<String, Object> result = new HashMap<>(values.size());
+    values.entrySet().forEach(e -> result.put(e.getKey().getKey(), e.getValue()));
+    return GSON.toJson(result);
   }
 
-  public static void validate(Map<String, Object> values) {
-    Validate.notNull(values, "Parâmetro(s) do protocolo não pode ser vazio");
+  @SuppressWarnings("unchecked")
+  public static Map<Constants, Object> fromString(String value) {
+    Map<String, Object> map = GSON.fromJson(value, Map.class);
+    Map<Constants, Object> result = new HashMap<>(map.size());
+    for (Entry<String, Object> entry : map.entrySet()) {
+      result.put(Constants.valueOfKey(entry.getKey()), entry.getValue());
+    }
+    return result;
+  }
+
+  public static void validate(Map<Constants, Object> values) {
+    Validate.notEmpty(values, "Parâmetro(s) do protocolo não pode ser vazio");
   }
 }
