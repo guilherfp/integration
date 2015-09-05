@@ -1,2 +1,2 @@
 # integration
-Estudo de padrões de comunicação entre servidores.
+Estudo de padrões de comunicação para troca de mensagens entre servidores.
