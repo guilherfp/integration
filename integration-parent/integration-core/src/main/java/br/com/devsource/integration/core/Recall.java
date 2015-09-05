@@ -16,7 +16,7 @@ public final class Recall {
   private String id;
   private long time;
   private Action action;
-  private Map<Constants, Object> values;
+  private Map<Parametro, Object> values;
 
   Recall() {
     super();
@@ -35,7 +35,7 @@ public final class Recall {
     this.action = action;
   }
 
-  public Recall(String id, long time, Map<Constants, Object> values) {
+  public Recall(String id, long time, Map<Parametro, Object> values) {
     this(id, time);
     RecallValues.validate(values);
     this.values = values;
@@ -67,11 +67,11 @@ public final class Recall {
     return action;
   }
 
-  public Map<Constants, Object> getValues() {
+  public Map<Parametro, Object> getValues() {
     return Collections.unmodifiableMap(safeValues());
   }
 
-  private Map<Constants, Object> safeValues() {
+  private Map<Parametro, Object> safeValues() {
     return ObjectUtils.defaultIfNull(values, new HashMap<>());
   }
 
@@ -122,7 +122,7 @@ public final class Recall {
     private String id;
     private long time;
     private Action action;
-    private Map<Constants, Object> values = new HashMap<>();
+    private Map<Parametro, Object> values = new HashMap<>();
 
     private RecallBuilder() {
       super();
@@ -143,7 +143,7 @@ public final class Recall {
       return this;
     }
 
-    public Recall.RecallBuilder values(Map<Constants, Object> values) {
+    public Recall.RecallBuilder values(Map<Parametro, Object> values) {
       this.values = values;
       return this;
     }

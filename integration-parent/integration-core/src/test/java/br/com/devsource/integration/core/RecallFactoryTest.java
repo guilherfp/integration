@@ -25,7 +25,7 @@ public class RecallFactoryTest {
     Recall recall = RecallFactory.valueOf(msg);
     assertEquals("32", recall.getId());
     assertFalse(recall.isAction());
-    assertEquals(singletonMap(Constants.MESSAGE, "TESTE"), recall.getValues());
+    assertEquals(singletonMap(Parametro.MESSAGE, "TESTE"), recall.getValues());
     assertEquals(dateTime, recall.getLocalDateTime());
   }
   @Test

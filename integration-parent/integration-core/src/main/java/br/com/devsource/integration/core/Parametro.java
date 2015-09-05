@@ -3,7 +3,7 @@ package br.com.devsource.integration.core;
 /**
  * @author Guilherme Pacheco
  */
-public enum Constants implements HasKey {
+public enum Parametro implements HasKey {
 
   MESSAGE("Mensagem", "m"),
   CLIENT("Código do cliente", "c"),
@@ -12,7 +12,7 @@ public enum Constants implements HasKey {
   private String descricao;
   private String key;
 
-  private Constants(String descricao, String key) {
+  private Parametro(String descricao, String key) {
     this.descricao = descricao;
     this.key = key;
   }
@@ -26,7 +26,7 @@ public enum Constants implements HasKey {
     return key;
   }
 
-  public static Constants valueOfKey(String key) {
+  public static Parametro valueOfKey(String key) {
     return HasKey.valueOfKey(key, values());
   }
 

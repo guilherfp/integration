@@ -18,7 +18,7 @@ public class RecallValues {
     super();
   }
 
-  public static String toString(Map<Constants, Object> values) {
+  public static String toString(Map<Parametro, Object> values) {
     validate(values);
     Map<String, Object> result = new HashMap<>(values.size());
     values.entrySet().forEach(e -> result.put(e.getKey().getKey(), e.getValue()));
@@ -26,16 +26,16 @@ public class RecallValues {
   }
 
   @SuppressWarnings("unchecked")
-  public static Map<Constants, Object> fromString(String value) {
+  public static Map<Parametro, Object> fromString(String value) {
     Map<String, Object> map = GSON.fromJson(value, Map.class);
-    Map<Constants, Object> result = new HashMap<>(map.size());
+    Map<Parametro, Object> result = new HashMap<>(map.size());
     for (Entry<String, Object> entry : map.entrySet()) {
-      result.put(Constants.valueOfKey(entry.getKey()), entry.getValue());
+      result.put(Parametro.valueOfKey(entry.getKey()), entry.getValue());
     }
     return result;
   }
 
-  public static void validate(Map<Constants, Object> values) {
+  public static void validate(Map<Parametro, Object> values) {
     Validate.notEmpty(values, "Parâmetro(s) do protocolo não pode ser vazio");
   }
 }

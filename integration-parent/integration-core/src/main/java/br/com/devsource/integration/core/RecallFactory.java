@@ -32,7 +32,7 @@ public final class RecallFactory {
     return StringUtils.containsAny(body, "{", "}");
   }
 
-  private static Map<Constants, Object> values(String body) {
+  private static Map<Parametro, Object> values(String body) {
     return RecallValues.fromString(body);
   }
 

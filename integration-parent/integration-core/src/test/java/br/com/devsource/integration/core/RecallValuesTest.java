@@ -15,16 +15,16 @@ public class RecallValuesTest {
 
   @Test
   public void testToString() throws Exception {
-    Map<Constants, Object> map = new TreeMap<>();
-    map.put(Constants.CLIENT, 123);
-    map.put(Constants.MESSAGE, "TEST");
+    Map<Parametro, Object> map = new TreeMap<>();
+    map.put(Parametro.CLIENT, 123);
+    map.put(Parametro.MESSAGE, "TEST");
     assertEquals("{\"m\":\"TEST\",\"c\":123}", RecallValues.toString(map));
   }
 
   @Test
   public void testToString_OneParameter() throws Exception {
-    Map<Constants, Object> map = new TreeMap<>();
-    map.put(Constants.CLIENT, 123);
+    Map<Parametro, Object> map = new TreeMap<>();
+    map.put(Parametro.CLIENT, 123);
     assertEquals("{\"c\":123}", RecallValues.toString(map));
   }
 
@@ -40,11 +40,11 @@ public class RecallValuesTest {
 
   @Test
   public void testFromString() throws Exception {
-    Map<Constants, Object> map = RecallValues.fromString("{\"m\":\"TEST\",\"c\":123}");
+    Map<Parametro, Object> map = RecallValues.fromString("{\"m\":\"TEST\",\"c\":123}");
     assertNotNull(map);
     assertEquals(2, map.size());
-    assertEquals("TEST", map.get(Constants.MESSAGE));
-    assertEquals(123.0, map.get(Constants.CLIENT));
+    assertEquals("TEST", map.get(Parametro.MESSAGE));
+    assertEquals(123.0, map.get(Parametro.CLIENT));
   }
 
 }

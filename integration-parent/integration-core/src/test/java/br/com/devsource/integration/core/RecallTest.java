@@ -39,7 +39,7 @@ public class RecallTest {
 
   @Test
   public void testToString() throws Exception {
-    Map<Constants, Object> map = singletonMap(Constants.MESSAGE, "TESTE");
+    Map<Parametro, Object> map = singletonMap(Parametro.MESSAGE, "TESTE");
     Recall recall = new Recall("32", InstantUtils.toLong(dateTime), map);
     assertEquals("32[{\"m\":\"TESTE\"}]1441473600000", recall.toString());
   }
