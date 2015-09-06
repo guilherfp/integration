@@ -20,7 +20,7 @@ public class Mensagem {
 
   private String uuid;
   private Cliente cliente;
-  private Map<Parametro, String> values;
+  private Map<Parametro, Object> values;
   private LocalDateTime criacao;
   private LocalDateTime envio;
   private LocalDateTime recebimento;
@@ -32,12 +32,17 @@ public class Mensagem {
     super();
   }
 
-  Mensagem(Cliente cliente, Map<Parametro, String> values) {
-    Validate.notNull(cliente, "Cliente da mensagem inválido");
-    Validate.notEmpty(values, "Parâmetro(s) do protocolo não pode ser vazio");
-    uuid = UUID.randomUUID().toString();
-    criacao = LocalDateTime.now();
+  Mensagem(UUID uuid, Cliente cliente, Map<Parametro, Object> values) {
+    this(uuid, values);
+    values.put(Parametro.CLIENT, cliente.getId());
     this.cliente = cliente;
+  }
+
+  Mensagem(UUID uuid, Map<Parametro, Object> values) {
+    Validate.notEmpty(values, "Parâmetro(s) do protocolo não pode ser vazio");
+    Validate.notNull(uuid, "UUID inválido");
+    criacao = LocalDateTime.now();
+    this.uuid = uuid.toString();
     this.values = values;
   }
 
@@ -49,7 +54,11 @@ public class Mensagem {
     return cliente;
   }
 
-  public Map<Parametro, String> getValues() {
+  public boolean isCliente() {
+    return cliente != null;
+  }
+
+  public Map<Parametro, Object> getValues() {
     return Collections.unmodifiableMap(values);
   }
 
@@ -91,12 +100,11 @@ public class Mensagem {
   public String toString() {
     ToStringBuilder builder = new ToStringBuilder("Mensagem = ");
     builder.append("UUID", uuid);
-    builder.append("Cliente", cliente);
-    builder.append("Values", values);
+    builder.append(cliente);
     builder.append("Criação", criacao);
     builder.append("Envio", envio, "Não enviado");
     builder.append("Recebimento", recebimento, "Não recebido");
-    builder.append("Cancelada", cancelada);
+    builder.isTrue(cancelada, "cancelada");
     return builder.toString();
   }
 

@@ -19,17 +19,35 @@ public final class ToStringBuilder {
   }
 
   public void append(String field, Object value) {
-    if (added) {
-      builder.append(", ");
-    }
+    check();
     builder.append(field);
     builder.append(": ");
     builder.append(value);
     added = true;
   }
 
+  public void append(Object value) {
+    check();
+    builder.append(value);
+    added = true;
+  }
+
   public void append(String field, Object value, Object defaultValue) {
     append(field, ObjectUtils.defaultIfNull(value, defaultValue));
+  }
+
+  public void isTrue(boolean value, String string) {
+    if (value) {
+      check();
+      builder.append(string);
+      added = true;
+    }
+  }
+
+  private void check() {
+    if (added) {
+      builder.append(", ");
+    }
   }
 
   @Override

@@ -1,6 +1,7 @@
 package br.com.devsource.integration.server.message;
 
 import java.util.Map;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +25,10 @@ public class MensagemService {
     this.mensagemRepository = mensagemRepository;
   }
 
-  public void criarMensagem(Usuario usuario, Cliente cliente, Map<Parametro, String> values) {
+  public void criarMensagem(Usuario usuario, Cliente cliente, Map<Parametro, Object> values) {
     Permissao permissao = Permissao.CRIAR_MENSAGEM;
     UsuarioUtils.permite(usuario, permissao);
-    Mensagem mensagem = new Mensagem(cliente, values);
+    Mensagem mensagem = new Mensagem(UUID.randomUUID(), cliente, values);
     mensagemRepository.salvar(mensagem);
     LOGGER.info("Usuário: {}, criou mensagem: {}", usuario, mensagem);
   }

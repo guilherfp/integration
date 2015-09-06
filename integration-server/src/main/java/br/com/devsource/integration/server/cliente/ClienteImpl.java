@@ -68,7 +68,7 @@ public class ClienteImpl implements Cliente, Comparable<Cliente> {
 
   @Override
   public String toString() {
-    return "ClienteImpl = id: " + id + ", nome: " + nome;
+    return "Cliente = id: " + id + ", nome: " + nome;
   }
 
 }
